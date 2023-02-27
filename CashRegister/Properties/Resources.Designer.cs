@@ -61,6 +61,15 @@ namespace CashRegister.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Receipt_Printer___Sound_Effect_HD {
+            get {
+                return ResourceManager.GetStream("Receipt_Printer___Sound_Effect_HD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap smileyfrog {

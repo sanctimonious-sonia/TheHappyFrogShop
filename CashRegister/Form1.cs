@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Media;
 
 namespace CashRegister
 {
@@ -73,6 +75,10 @@ namespace CashRegister
         {
             try
             {
+                //reset after any previous error
+                totalsErrorLabel.Text = "";
+                titleLabel.Text = "The Happy Frog Shop";
+
                 //calculate
                 frogPrice = 4.33;
                 toadPrice = 5.55;
@@ -102,9 +108,11 @@ namespace CashRegister
             }
             catch
             {
+                //print error message
                 frogsInput.Text = "";
                 toadsInput.Text = "";
                 lilypadsInput.Text = "";
+                titleLabel.Text = "The Unhappy Frog Shop";
                 totalsErrorLabel.Text = $"ERROR\nPlease enter a number";
             }
         }
@@ -114,6 +122,10 @@ namespace CashRegister
         {
             try
             {
+                //reset after any previous error
+                changeErrorLabel.Text = "";
+                titleLabel.Text = "The Happy Frog Shop";
+
                 //calculate change
                 amountTendered = Convert.ToInt32(tenderedInput.Text);
                 change = amountTendered - total;
@@ -126,21 +138,26 @@ namespace CashRegister
             }
             catch
             {
+                //print error message
                 tenderedInput.Text = "";
                 changeErrorLabel.Text = $"Error: Please enter a number";
+                titleLabel.Text = "The Unhappy Frog Shop";
             }
 
         }
     
         private void receiptbutton_Click(object sender, EventArgs e)
         {
-            //receipt printing sound?
-            
+            //receipt printing sound
+            SoundPlayer player = new SoundPlayer(Properties.Resources.Receipt_Printer___Sound_Effect_HD);
+            player.Play();
+
             //print receipt title
             receiptTitleLabel.Text = "The Happy Frog Shop";
             receiptTitleLabel.Visible = true;
 
-            //sleep?
+            Refresh();
+            Thread.Sleep(2000);
 
             //print receipt body
             receiptOrderedLabel.Visible = true;
@@ -148,7 +165,8 @@ namespace CashRegister
             receiptPricesLabel.Visible = true;
             receiptPricesLabel.Text = $"{frogCost.ToString("C")}\n{toadCost.ToString("C")}\n{lilypadCost.ToString("C")}";
 
-            //sleep?
+            Refresh();
+            Thread.Sleep(2000);
 
             //print receipt end
             receiptEndLabel.Visible = true;
@@ -156,7 +174,8 @@ namespace CashRegister
             receiptTotalsLabel.Visible = true;
             receiptTotalsLabel.Text = $"{subtotal.ToString("C")}\n{tax.ToString("C")}\n{total.ToString("C")}\n\n{amountTendered.ToString("C")}\n{change.ToString("C")}";
 
-            //sleep?
+            Refresh();
+            Thread.Sleep(2000);
 
             //print goodbye message
             frogPicturebox.Visible = true;

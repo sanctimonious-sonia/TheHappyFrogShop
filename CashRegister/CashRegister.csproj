@@ -83,5 +83,8 @@
   <ItemGroup>
     <None Include="Resources\smileyfrog.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Receipt Printer - Sound Effect HD.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
